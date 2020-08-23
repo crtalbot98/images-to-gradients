@@ -1,20 +1,22 @@
 import React, {memo} from "react";
+import {ImageContext} from "./context/ImageContext";
 
-React.memo(function Canvas(){
+let Canvas = React.memo(function(prop){
 
-    const [curImage, switchImage] = React.useState();
+    let canvas = React.useRef(null);
+    const imgState = React.useContext(ImageContext);
+    const [curImage, switchImage] = React.useState(imgState.image);
 
-    React.useEffect(() =>{
 
-    }, []);
-
-    const updateCanvas = () => {
-        const ctx = ref.canvas.getContext('2d');
+    React.useEffect(() => {
+        switchImage(imgState.image);
+        if(curImage === null) return;
+        const ctx = canvas.current.getContext('2d');
         ctx.drawImage(curImage, 10, 10);
-    };
+    }, [imgState]);
 
     return(
-        <canvas id={'image-canvas'} ref={'canvas'} height={'250px'} width={'300px'}>
+        <canvas id={'image-canvas'} ref={canvas} height={'250px'} width={'300px'}>
 
         </canvas>
     );
