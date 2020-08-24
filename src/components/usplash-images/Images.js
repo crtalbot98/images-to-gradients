@@ -1,6 +1,5 @@
 import React from "react";
 import {ImageContext, ImageProvider} from "../context/ImageContext";
-import Canvas from "../Canvas";
 
 function Images(props){
 

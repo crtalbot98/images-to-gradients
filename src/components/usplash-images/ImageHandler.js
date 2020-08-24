@@ -19,7 +19,7 @@ function ImageHandler(){
         console.log(page);
         if(!loadImages) return;
         const fetchData = async() => {
-            const imageData = await fetch(`https://api.unsplash.com/photos/?page=${page}&client_id=${process.env.REACT_APP_IMAGE_ACCESS}`);
+            const imageData = await fetch(`https://api.unsplash.com/photos/?page=${page}&per_page=${12}&client_id=${process.env.REACT_APP_IMAGE_ACCESS}`);
             const imageJson = await imageData.json();
             getList(imageJson);
             setImages(false);
