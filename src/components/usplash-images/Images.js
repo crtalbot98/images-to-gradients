@@ -9,7 +9,7 @@ function Images(props){
         <ImageProvider>
             <img onClick={(e) => {
                 state.setImage(e.target)
-            }} src={props.src} alt={props.alt}/>
+            }} src={props.src} alt={props.alt} crossOrigin={''}/>
         </ImageProvider>
     );
 }
