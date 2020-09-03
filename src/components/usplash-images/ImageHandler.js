@@ -1,6 +1,7 @@
 import React from "react";
 import LoadingHandler from "../LoadingHandler";
 import ImageList from "./ImageList";
+import {fetchData} from "../../hooks/Hooks";
 
 const clickTypes = {
     'load': 1,
@@ -18,13 +19,11 @@ function ImageHandler(){
     React.useEffect(() => {
         console.log(page);
         if(!loadImages) return;
-        const fetchData = async() => {
-            const imageData = await fetch(`https://api.unsplash.com/photos/?page=${page}&per_page=${12}&client_id=${process.env.REACT_APP_IMAGE_ACCESS}`);
-            const imageJson = await imageData.json();
-            getList(imageJson);
-            setImages(false);
+        const data = async() => {
+            return await fetchData(`https://api.unsplash.com/photos/?page=${page}&per_page=${12}&client_id=${process.env.REACT_APP_IMAGE_ACCESS}`)
         };
-        fetchData();
+        getList(data);
+        setImages(false);
     }, [loadImages, page]);
 
     const handleClick = (e, type) => {
