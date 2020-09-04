@@ -1,6 +1,6 @@
 import React from 'react';
 import ImageHandler from "./components/usplash-images/ImageHandler";
-import Canvas from "./components/Canvas";
+import Canvas from "./components/canvas/Canvas";
 import {ImageContext, ImageProvider} from "./components/context/ImageContext";
 import './App.css';
 

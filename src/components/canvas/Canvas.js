@@ -1,5 +1,5 @@
-import React, {memo} from "react";
-import {ImageContext} from "./context/ImageContext";
+import React from "react";
+import {ImageContext} from "../context/ImageContext";
 
 let Canvas = React.memo(function(prop){
 
@@ -12,7 +12,7 @@ let Canvas = React.memo(function(prop){
     });
 
     const clearImage = (c, ctx) => {
-        if(c === null) return;
+        if(c === null || ctx === null) return;
         let img = ctx.createImageData(c.width, c.height);
         for (let i = img.data.length; i >= 0; i--){
             img.data[i] = 0;
@@ -21,18 +21,15 @@ let Canvas = React.memo(function(prop){
     };
 
     const getImageData = (ctx) => {
-
         let data = {};
         let j = 0;
         const max = Math.max(size.width, size.height);
         const min = Math.min(size.width, size.height);
-        console.log(imgState.image);
 
         for(let i = 0; i <= max; i += 15){
             if(i <= min){
                 j++;
             }
-            console.log(i,j);
             data[i] = ctx.getImageData(i, j,1,1).data;
         }
         console.log(data);
@@ -40,6 +37,7 @@ let Canvas = React.memo(function(prop){
     };
 
     React.useEffect(() => {
+        if(imgState.image === null) return;
         const ctx = canvas.current.getContext('2d');
         const updateCanvas = async() => {
             await setPrevImg(imgState.image);
@@ -48,14 +46,14 @@ let Canvas = React.memo(function(prop){
             await ctx.drawImage(imgState.image, 0,0);
             await getImageData(ctx);
         };
-
-        if(imgState.image === null) return;
         updateCanvas();
     }, [imgState]);
 
     return(
-        <canvas id={'image-canvas'} ref={canvas} height={size.height} width={size.width}>
-
+        <canvas id={'image-canvas'} ref={canvas} height={size.height} width={size.width}
+                data-img={imgState.image !== null ? imgState.image.src : 'empty'}
+                data-testid={'canvas-image'}
+        >
         </canvas>
     );
 });

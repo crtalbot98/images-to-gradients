@@ -20,9 +20,10 @@ function ImageHandler(){
         console.log(page);
         if(!loadImages) return;
         const data = async() => {
-            return await fetchData(`https://api.unsplash.com/photos/?page=${page}&per_page=${12}&client_id=${process.env.REACT_APP_IMAGE_ACCESS}`)
+            const imgs = await fetchData(`https://api.unsplash.com/photos/?page=${page}&per_page=${12}&client_id=${process.env.REACT_APP_IMAGE_ACCESS}`);
+            getList(imgs);
         };
-        getList(data);
+        data();
         setImages(false);
     }, [loadImages, page]);
 

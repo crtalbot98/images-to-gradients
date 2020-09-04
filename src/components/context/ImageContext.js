@@ -16,7 +16,7 @@ export const ImageProvider = (props) => {
         setImage: setImage
     };
 
-    const [state, setState] = React.useState(initState);
+    const [state, setState] = React.useState(initState); // Updates reacts state
 
     return (
         <ImageContext.Provider value={state}>
