@@ -1,5 +1,6 @@
 import React from "react";
 import {ImageContext} from "../context/ImageContext";
+import GradientList from "./GradientList";
 
 let Canvas = React.memo(function(prop){
 
@@ -10,6 +11,7 @@ let Canvas = React.memo(function(prop){
         width: 0,
         height: 0
     });
+    const[gData, setGData] = React.useState([]);
 
     const clearImage = (c, ctx) => {
         if(c === null || ctx === null) return;
@@ -21,20 +23,18 @@ let Canvas = React.memo(function(prop){
     };
 
     const getImageData = (ctx, size) => {
-        let data = {};
+        let data = [];
         let j = 0;
         const max = Math.max(size.width, size.height);
         const min = Math.min(size.width, size.height);
-        console.log(max, min);
 
         for(let i = 0; i <= max; i += 15){
             if(j >= min) break;
             if(i <= min) j += 15;
-            console.log(i, j);
-            data[i] = ctx.getImageData(i, j,1,1).data;
+            data.push(ctx.getImageData(i, j,1,1).data.toString());
         }
-        console.log(data);
-        return data;
+
+        setGData(data);
     };
 
     const updateCanvas = async (ctx) => {
@@ -53,11 +53,13 @@ let Canvas = React.memo(function(prop){
     }, [imgState.image]);
 
     return(
-        <canvas id={'image-canvas'} ref={canvas} height={`${size.height}px`} width={`${size.width}px`}
-                data-img={imgState.image !== null ? imgState.image.src : 'empty'}
-                data-testid={'canvas-image'}
-        >
-        </canvas>
+        <React.Fragment>
+            <canvas id={'image-canvas'} ref={canvas} height={`${size.height}px`} width={`${size.width}px`}
+                    data-img={imgState.image !== null ? imgState.image.src : 'empty'}
+                    data-testid={'canvas-image'}
+            />
+            <GradientList data={gData}/>
+        </React.Fragment>
     );
 });
 
