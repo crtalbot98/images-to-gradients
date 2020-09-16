@@ -7,7 +7,7 @@ let ImageList = React.memo(function(props){
 
     if(imageList.length < 1) return null;
     if(imageList.errors && imageList.errors.length > 0) return <p>{imageList.error}</p>;
-    console.log(props.images);
+
     let data = imageList.map((itm) =>
         <Images key={itm.id} src={itm.urls.small} alt={itm.alt_description} size={{width: itm.width / 10, height: itm.height / 10}}/>
     );

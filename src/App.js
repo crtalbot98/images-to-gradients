@@ -7,12 +7,14 @@ import './App.css';
 function App() {
 
   return (
-      <div>
-          <ImageProvider>
+      <ImageProvider>
+          <div className={'gradient'}>
               <Canvas/>
+          </div>
+          <div>
               <ImageHandler/>
-          </ImageProvider>
-      </div>
+          </div>
+      </ImageProvider>
   );
 }
 

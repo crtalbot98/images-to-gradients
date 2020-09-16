@@ -2,58 +2,61 @@ import React from "react";
 import LoadingHandler from "../LoadingHandler";
 import ImageList from "./ImageList";
 import {fetchData} from "../../hooks/Hooks";
+import UploadBtns from "../canvas/uploadBtns";
+import {ImageContext} from "../context/ImageContext";
 
 const clickTypes = {
-    'load': 1,
-    'page': 2
+    'Previous': 1,
+    'Next': 2
 };
 
 function ImageHandler(){
 
-    const selectedImg = React.createContext(null);
-    const [loadImages, setImages] = React.useState(false);
+    const imgState = React.useContext(ImageContext);
+    const [loadImages, setImages] = React.useState(imgState.loading);
+    const [loadClicked, setClicked] = React.useState(imgState.isLoaded);
     const [images, getList] = React.useState([]);
     const [page, setPage] = React.useState(1);
     const ImagesLoading = LoadingHandler(ImageList);
 
     React.useEffect(() => {
-        console.log(page);
-        if(!loadImages) return;
+        if(!imgState.loading) return;
+        console.log('loaded');
         const data = async() => {
             const imgs = await fetchData(`https://api.unsplash.com/photos/?page=${page}&per_page=${12}&client_id=${process.env.REACT_APP_IMAGE_ACCESS}`);
             getList(imgs);
         };
         data();
-        setImages(false);
-    }, [loadImages, page]);
+        // setImages(false);
+        imgState.setLoading(false);
+    }, [imgState.loading, page]);
 
-    const handleClick = (e, type) => {
-        if(clickTypes[type] === 1){
-            setImages(true);
+    React.useEffect(() => {
+        setClicked(imgState.isLoaded);
+    }, [imgState.isLoaded]);
+
+    const handleClick = (e) => {
+        let pageNum = page;
+        if(page !== 1 && clickTypes[e.target.innerText] === 1){
+            pageNum -= 1;
+            setPage(pageNum);
         }
-        else if(clickTypes[type] === 2){
-            let pageNum = page;
-            if(page !== 1 && e.target.innerText === 'Previous'){
-                pageNum -= 1;
-                setImages(true);
-                setPage(pageNum);
-            }
-            else if(e.target.innerText === 'Next'){
-                pageNum += 1;
-                setImages(true);
-                setPage(pageNum);
-            }
+        else if(clickTypes[e.target.innerText] === 2){
+            pageNum += 1;
+            setPage(pageNum);
         }
     };
 
     return(
-        <div>
-            <button onClick={(e) => {handleClick(e, 'load')}}>Load Images</button>
+        <React.Fragment>
+            <UploadBtns/>
             <ImagesLoading isLoading={loadImages} images={images}/>
-            <button onClick={(e) => {handleClick(e, 'page')}}>Previous</button>
-            <p>{page}</p>
-            <button onClick={(e) => {handleClick(e, 'page')}}>Next</button>
-        </div>
+            <div className={loadClicked ? 'flex' : 'hidden'}>
+                <button onClick={(e) => {handleClick(e)}}>Previous</button>
+                <p>{page}</p>
+                <button onClick={(e) => {handleClick(e)}}>Next</button>
+            </div>
+        </React.Fragment>
     )
 }
 

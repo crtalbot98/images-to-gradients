@@ -1,26 +1,51 @@
 import React from "react";
 
-function GradientList(props){
+const GradientList = React.memo(function(props){
 
-    const genGradients = (arr) => {
-        let i = 0;
-        let j = arr.length - 1;
-        let gradData = [];
+    const [colorAmt, setAmt] = React.useState(2);
+    console.log(props.data);
 
-        while(i < j){
-            gradData.push(`linear-gradient(to right, rgba(${arr[i]}), rgba(${arr[j]}))`);
-            i++;
-            j--;
-        }
+    let data = genGradients(props.data, colorAmt).map((itm) =>
+        <div>
+            <div style={{'height': '50px', 'width': '50px', 'backgroundImage': `linear-gradient(${itm})`}}>
 
-        return gradData;
-    };
-
-    let data = genGradients(props.data).map((itm) =>
-        <div style={{'height': '200px', 'width': '400px', 'background-image': itm}}>background-image: {itm}</div>
+            </div>
+            <p>background-image: linear-gradient{itm}</p>
+        </div>
     );
 
-    return <div>{data}</div>
-}
+    return (
+        <React.Fragment>
+            <select name="colorAmt" id="colorAmt" defaultValue={colorAmt} onChange={(e) => {
+                setAmt(Number(e.target.value));
+            }}>
+                <option value={2}>2</option>
+                <option value={3}>3</option>
+                <option value={4}>4</option>
+            </select>
+            <div className={'gradientList'}>{!props.data ? <p>Please upload or select an image</p> : data}</div>
+        </React.Fragment>
+    )
+});
+
+const genGradients = (arr, n) => {
+    let i = 0;
+    let j = 1;
+    let gradData = [];
+
+    while(i < arr.length - n){
+        if(j === i + 1) gradData.push(`rgba(${arr[i]})`);
+        if(j !== i + n){
+            gradData[i] = gradData[i].concat(`, rgba(${arr[j]})`);
+            j++;
+        }
+        else{
+            i++;
+            j = i + 1;
+        }
+    }
+
+    return gradData;
+};
 
 export default GradientList;
