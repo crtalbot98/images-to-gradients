@@ -4,9 +4,11 @@ export const ImageContext = React.createContext({ // Create the context
     image: null,
     isLoaded: false,
     loading: false,
+    deg: 0,
     setImage: () => {},
     setLoaded: () => {},
-    setLoading: () => {}
+    setLoading: () => {},
+    setDeg: () => {}
 });
 
 export const ImageProvider = (props) => {
@@ -23,12 +25,17 @@ export const ImageProvider = (props) => {
         setState({...state, loading: isLoading})
     };
 
+    const setDeg = (deg) => { // Create function to update the current selected degree
+        setState({...state, deg: deg})
+    };
+
     const initState = { // Declare the state with the new values
         image: null,
         isLoaded: false,
         setImage: setImage,
         setLoaded: setLoaded,
-        setLoading: setLoading
+        setLoading: setLoading,
+        setDeg: setDeg
     };
 
     const [state, setState] = React.useState(initState); // Updates reacts state

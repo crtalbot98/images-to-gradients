@@ -1,28 +1,22 @@
 import React from "react";
+import DegreePicker from "./DegreePicker";
+import {ImageContext} from "../context/ImageContext";
 
 const GradientList = React.memo(function(props){
 
-    const [colorAmt, setAmt] = React.useState(2);
-    console.log(props.data);
+    const imgState = React.useContext(ImageContext);
 
-    let data = genGradients(props.data, colorAmt).map((itm) =>
-        <div>
-            <div style={{'height': '50px', 'width': '50px', 'backgroundImage': `linear-gradient(${itm})`}}>
+    let data = genGradients(props.data, props.gradAmt).map((itm, i) =>
+        <div key={i}>
+            <div style={{'height': '50px', 'width': '50px', 'backgroundImage': `${props.type}-gradient(${imgState.deg}deg, ${itm})`}}>
 
             </div>
-            <p>background-image: linear-gradient{itm}</p>
+            <p>background-image: {props.type}-gradient({imgState.deg}deg, {itm})</p>
         </div>
     );
 
     return (
         <React.Fragment>
-            <select name="colorAmt" id="colorAmt" defaultValue={colorAmt} onChange={(e) => {
-                setAmt(Number(e.target.value));
-            }}>
-                <option value={2}>2</option>
-                <option value={3}>3</option>
-                <option value={4}>4</option>
-            </select>
             <div className={'gradientList'}>{!props.data ? <p>Please upload or select an image</p> : data}</div>
         </React.Fragment>
     )

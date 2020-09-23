@@ -8,8 +8,10 @@ function App() {
 
   return (
       <ImageProvider>
-          <div className={'gradient'}>
-              <Canvas/>
+          <div className={'gradient flex-center'}>
+              <div className={'eighty-width flex-row-wrap'}>
+                  <Canvas/>
+              </div>
           </div>
           <div>
               <ImageHandler/>

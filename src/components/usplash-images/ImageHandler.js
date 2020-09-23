@@ -2,7 +2,6 @@ import React from "react";
 import LoadingHandler from "../LoadingHandler";
 import ImageList from "./ImageList";
 import {fetchData} from "../../hooks/Hooks";
-import UploadBtns from "../canvas/uploadBtns";
 import {ImageContext} from "../context/ImageContext";
 
 const clickTypes = {
@@ -21,13 +20,11 @@ function ImageHandler(){
 
     React.useEffect(() => {
         if(!imgState.loading) return;
-        console.log('loaded');
         const data = async() => {
             const imgs = await fetchData(`https://api.unsplash.com/photos/?page=${page}&per_page=${12}&client_id=${process.env.REACT_APP_IMAGE_ACCESS}`);
             getList(imgs);
         };
         data();
-        // setImages(false);
         imgState.setLoading(false);
     }, [imgState.loading, page]);
 
@@ -49,7 +46,6 @@ function ImageHandler(){
 
     return(
         <React.Fragment>
-            <UploadBtns/>
             <ImagesLoading isLoading={loadImages} images={images}/>
             <div className={loadClicked ? 'flex' : 'hidden'}>
                 <button onClick={(e) => {handleClick(e)}}>Previous</button>
