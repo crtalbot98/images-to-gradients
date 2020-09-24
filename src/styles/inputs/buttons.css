@@ -1,22 +1,12 @@
-.gradient-btn{
-  .btn(@sec-black, @primary-white);
-}
-
-.gradient-btn:first-child{
+.gradient-btn:first-child {
   border-bottom-left-radius: 1em;
   border-top-left-radius: 1em;
 }
-
-.gradient-btn:last-child{
+.gradient-btn:last-child {
   border-bottom-right-radius: 1em;
   border-top-right-radius: 1em;
 }
-
-.selected{
-  background-color: #0E0056;
-}
-
-.fixed-btn{
+.fixed-btn {
   position: fixed;
   bottom: 0;
   width: 12em;
@@ -25,19 +15,23 @@
   justify-content: space-between;
   align-items: center;
   color: #ffffff;
-  .bottom-center('-6em');
+  left: 50%;
+  margin-left: -6em;
 }
-
-.fixed-btn button{
-  .btn(@sec-lavender, @tp);
+.fixed-btn button {
+  background-color: #554B71;
+  border: 2px solid transparent;
+  width: 5em;
+  height: 2em;
+  border-radius: 1em;
+  color: #ffffff;
 }
-
-.fixed-btn button:hover{
+.fixed-btn button:hover {
   border: 2px solid #554B71;
   background-color: #24252E;
 }
-
-.fixed-btn p{
+.fixed-btn p {
   padding: 0.25em;
-  color: #ffffff
+  color: #ffffff;
 }
+/*# sourceMappingURL=buttons.css.map */

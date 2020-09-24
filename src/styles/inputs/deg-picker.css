@@ -1,4 +1,4 @@
-.circle{
+.circle {
   height: 4.5em;
   width: 4.5em;
   border-radius: 4.5em;
@@ -7,15 +7,13 @@
   padding: 1em;
   box-sizing: border-box;
 }
-
-.circle .stick{
+.circle .stick {
   height: 5.25em;
   width: 10px;
   background-color: transparent;
   position: absolute;
 }
-
-.stick .dot{
+.stick .dot {
   width: 15px;
   height: 15px;
   background-color: #ff8b00;
@@ -23,8 +21,7 @@
   border-radius: 15px;
   margin: 0;
 }
-
-.deg-input{
+.deg-input {
   background-color: #24252E;
   border: none;
   border-bottom: 2px solid white;
@@ -33,3 +30,4 @@
   transform: rotate(0deg);
   position: absolute;
 }
+/*# sourceMappingURL=deg-picker.css.map */

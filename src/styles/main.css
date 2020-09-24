@@ -1,9 +1,10 @@
-body, html{
+body,
+html {
   margin: 0;
   height: auto;
 }
-
-canvas{
+canvas {
   margin: 0;
   background: #ffffff;
 }
+/*# sourceMappingURL=main.css.map */

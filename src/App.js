@@ -1,8 +1,7 @@
 import React from 'react';
-import ImageHandler from "./components/usplash-images/ImageHandler";
 import Canvas from "./components/canvas/Canvas";
-import {ImageContext, ImageProvider} from "./components/context/ImageContext";
-import './App.css';
+import {ImageProvider} from "./components/context/ImageContext";
+import './styles/style.less';
 
 function App() {
 
@@ -13,7 +12,6 @@ function App() {
                   <Canvas/>
               </div>
           </div>
-
       </ImageProvider>
   );
 }
