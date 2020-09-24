@@ -1,11 +1,15 @@
 import React from "react";
 import {ImageContext} from "../context/ImageContext";
 import {changeSize} from "../../hooks/Hooks";
+import ImageHandler from "../usplash-images/ImageHandler";
 
 function UploadBtns(){
 
     const imgState = React.useContext(ImageContext);
-    const [loaded, setLoaded] = React.useState(false);
+    const [load, setLoadings] = React.useState({
+        loading: false,
+        loaded: false
+    });
 
     const getImageFile = (e) => {
         const file = e.target.files[0];
@@ -23,7 +27,6 @@ function UploadBtns(){
 
                 let outputImg = document.createElement('img');
                 const newSizes = changeSize(img.height, img.width);
-                console.log(newSizes);
                 const canvas = document.createElement('canvas');
                 const ctx = canvas.getContext('2d');
 
@@ -41,15 +44,14 @@ function UploadBtns(){
     };
 
     const handleClick = () => {
-        imgState.setLoaded(true);
-        imgState.setLoading(true);
-        setLoaded(true);
+        setLoadings({loading: true, loaded: true});
     };
 
     return (
         <React.Fragment>
-            <button className={loaded ? 'hidden' : 'flex'} onClick={handleClick}>Load Images</button>
+            <button className={load.loaded ? 'hidden' : 'flex'} onClick={handleClick}>Load Images</button>
             <input type={'file'} accept={'image/*'} onChange={getImageFile}/>
+            <ImageHandler load={load}/>
         </React.Fragment>
     )
 }

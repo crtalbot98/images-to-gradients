@@ -13,9 +13,7 @@ function App() {
                   <Canvas/>
               </div>
           </div>
-          <div>
-              <ImageHandler/>
-          </div>
+
       </ImageProvider>
   );
 }

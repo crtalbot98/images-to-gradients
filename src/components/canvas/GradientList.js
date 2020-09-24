@@ -8,10 +8,10 @@ const GradientList = React.memo(function(props){
 
     let data = genGradients(props.data, props.gradAmt).map((itm, i) =>
         <div key={i}>
-            <div style={{'height': '50px', 'width': '50px', 'backgroundImage': `${props.type}-gradient(${imgState.deg}deg, ${itm})`}}>
+            <div style={{'height': '50px', 'width': '50px', 'backgroundImage': `${props.type}-gradient(${props.deg}deg, ${itm})`}}>
 
             </div>
-            <p>background-image: {props.type}-gradient({imgState.deg}deg, {itm})</p>
+            <p>background-image: {props.type}-gradient({props.deg}deg, {itm})</p>
         </div>
     );
 

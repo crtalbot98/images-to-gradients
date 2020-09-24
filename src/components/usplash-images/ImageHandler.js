@@ -2,35 +2,29 @@ import React from "react";
 import LoadingHandler from "../LoadingHandler";
 import ImageList from "./ImageList";
 import {fetchData} from "../../hooks/Hooks";
-import {ImageContext} from "../context/ImageContext";
 
 const clickTypes = {
     'Previous': 1,
     'Next': 2
 };
 
-function ImageHandler(){
+const ImageHandler = React.memo(function(props){
 
-    const imgState = React.useContext(ImageContext);
-    const [loadImages, setImages] = React.useState(imgState.loading);
-    const [loadClicked, setClicked] = React.useState(imgState.isLoaded);
-    const [images, getList] = React.useState([]);
-    const [page, setPage] = React.useState(1);
     const ImagesLoading = LoadingHandler(ImageList);
+    const [images, getList] = React.useState([]);
+    const [loading, setLoading] = React.useState(props.load.loading);
+    const [page, setPage] = React.useState(1);
 
     React.useEffect(() => {
-        if(!imgState.loading) return;
+        if(!props.load.loading) return;
         const data = async() => {
             const imgs = await fetchData(`https://api.unsplash.com/photos/?page=${page}&per_page=${12}&client_id=${process.env.REACT_APP_IMAGE_ACCESS}`);
+            imgs.sort((a, b) => a.height - b.height);
             getList(imgs);
         };
         data();
-        imgState.setLoading(false);
-    }, [imgState.loading, page]);
-
-    React.useEffect(() => {
-        setClicked(imgState.isLoaded);
-    }, [imgState.isLoaded]);
+        setLoading(false);
+    }, [props.load.loading, page]);
 
     const handleClick = (e) => {
         let pageNum = page;
@@ -46,14 +40,14 @@ function ImageHandler(){
 
     return(
         <React.Fragment>
-            <ImagesLoading isLoading={loadImages} images={images}/>
-            <div className={loadClicked ? 'flex' : 'hidden'}>
+            <ImagesLoading isLoading={loading} images={images}/>
+            <div className={props.load.loaded ? 'flex fixed-btn' : 'hidden'}>
                 <button onClick={(e) => {handleClick(e)}}>Previous</button>
                 <p>{page}</p>
                 <button onClick={(e) => {handleClick(e)}}>Next</button>
             </div>
         </React.Fragment>
     )
-}
+});
 
 export default ImageHandler;

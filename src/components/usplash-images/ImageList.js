@@ -1,7 +1,7 @@
 import React from "react";
 import Images from "./Images";
 
-let ImageList = React.memo(function(props){
+function ImageList(props){
 
     const imageList = props.images;
 
@@ -13,10 +13,10 @@ let ImageList = React.memo(function(props){
     );
 
     return(
-        <div className={'imageList'}>
+        <div className={'image-list flex-column-wrap'}>
             {data}
         </div>
     )
-});
+}
 
 export default ImageList;
