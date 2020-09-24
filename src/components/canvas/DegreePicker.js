@@ -15,9 +15,9 @@ function DegreePicker(props){
         dPos.current.deg = e.target.value;
         dPos.current.x = Math.cos(setDotXY(e.target.value));
         dPos.current.y = Math.sin(setDotXY(e.target.value));
-        moveDot(pCont.current, props.deg);
         props.updateDeg(e.target.value);
-        dPos.current.inputDeg = e.target.value
+        dPos.current.inputDeg = e.target.value;
+        moveDot(pCont.current, dPos.current.inputDeg)
     };
 
     const handleMouseDown = (e) => {

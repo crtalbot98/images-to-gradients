@@ -1,0 +1,11 @@
+.image-list {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  padding: 6em 4em;
+  box-sizing: border-box;
+  margin-top: 20em;
+  min-height: 80em;
+  max-height: 120em;
+}
+/*# sourceMappingURL=image.css.map */

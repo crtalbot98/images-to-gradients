@@ -17,7 +17,7 @@ const GradientList = React.memo(function(props){
 
     return (
         <React.Fragment>
-            <div className={'gradientList'}>{!props.data ? <p>Please upload or select an image</p> : data}</div>
+            <div className={'gradient-list'}>{!props.data ? <p>Please upload or select an image</p> : data}</div>
         </React.Fragment>
     )
 });
