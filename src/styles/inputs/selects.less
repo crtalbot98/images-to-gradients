@@ -1,0 +1,33 @@
+.file{
+  .btn(@sec-black; @sec-white; 6em; 2em);
+  font-size: 13px;
+  padding: 0.5em 1.5em;
+}
+
+input[type="file"] {
+  position: absolute;
+  z-index: -1;
+  top: 6px;
+  left: 0;
+  font-size: 15px;
+  color: rgb(153,153,153);
+
+  @media screen and (max-width: 450px){
+    display: none;
+  }
+}
+
+.file-wrap{
+  position: relative;
+
+  @media screen and (max-width: 450px){
+    float: right;
+    margin-top: -3em;
+    margin-right: 1em;
+  }
+}
+
+input[type="select"]{
+  background-color: @primary-black;
+}
+

@@ -18,7 +18,7 @@ export const changeSize = (h, w) => {
         newSizes['w'] = w * 0.05;
         return newSizes;
     }
-    else if(h >= 1500 || w >= 1500){
+    else if(h >= 2000 || w >= 2000){
         newSizes['h'] = h * 0.1;
         newSizes['w'] = w * 0.1;
         return newSizes;
@@ -29,13 +29,13 @@ export const changeSize = (h, w) => {
         return newSizes;
     }
     else if(h >= 800|| w >= 800){
-        newSizes['h'] = h * 0.40;
-        newSizes['w'] = w * 0.40;
+        newSizes['h'] = h * 0.50;
+        newSizes['w'] = w * 0.50;
         return newSizes;
     }
     else if(h >= 400 || w >= 400){
-        newSizes['h'] = h * 0.80;
-        newSizes['w'] = w * 0.80;
+        newSizes['h'] = h * 0.85;
+        newSizes['w'] = w * 0.85;
         return newSizes;
     }
 

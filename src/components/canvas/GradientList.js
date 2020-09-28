@@ -1,17 +1,16 @@
 import React from "react";
-import DegreePicker from "./DegreePicker";
-import {ImageContext} from "../context/ImageContext";
 
 const GradientList = React.memo(function(props){
 
-    const imgState = React.useContext(ImageContext);
-
     let data = genGradients(props.data, props.gradAmt).map((itm, i) =>
-        <div key={i}>
-            <div style={{'height': '50px', 'width': '50px', 'backgroundImage': `${props.type}-gradient(${props.deg}deg, ${itm})`}}>
+        <div className={'gradient-code'} key={i}>
+            <div style={{'height': '75px', 'width': '75px', 'backgroundImage': `${props.type}-gradient(${compareType(props.type, props.deg)} ${itm})`}}>
 
             </div>
-            <p>background-image: {props.type}-gradient({props.deg}deg, {itm})</p>
+            <code>
+                <span className={'code-property'}>background-image: </span>
+                <span className={'code-property-val'}>{props.type}-gradient({compareType(props.type, props.deg)} {itm})</span>
+            </code>
         </div>
     );
 
@@ -21,6 +20,10 @@ const GradientList = React.memo(function(props){
         </React.Fragment>
     )
 });
+
+const compareType = (type, deg) => {
+    return type === 'linear' ? `${deg}deg,` : ''
+};
 
 const genGradients = (arr, n) => {
     let i = 0;

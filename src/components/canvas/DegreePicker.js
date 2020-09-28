@@ -32,6 +32,21 @@ function DegreePicker(props){
             props.updateDeg(Math.round(getDegFromMouse(dPos.current.x, dPos.current.y)));
         });
 
+        window.addEventListener('touchend', (m) => {
+            dPos.current.mUp = true;
+            props.updateDeg(Math.round(getDegFromMouse(dPos.current.x, dPos.current.y)));
+        });
+
+        window.addEventListener('touchmove', (m) => {
+            if(dPos.current.mUp) return;
+            dPos.current.x = m.touches[0].clientX - contX;
+            dPos.current.y = m.touches[0].clientY - contY;
+            const deg = Math.round(getDegFromMouse(dPos.current.x, dPos.current.y));
+            dPos.current.inputDeg = deg;
+            moveDot(cont, deg);
+            dPos.current.mUp = false;
+        });
+
         window.addEventListener('mousemove', (m) => {
             if(dPos.current.mUp) return;
             dPos.current.x = m.clientX - contX;
@@ -44,10 +59,13 @@ function DegreePicker(props){
     };
 
     return(
-        <div className={'flex-center'}>
-            <div className={'circle flex-center'} ref={pCont} data-deg={0}>
+        <div className={'deg-picker'}>
+            <div className={'circle'} ref={pCont} data-deg={0}>
                 <div className={'stick'}>
                     <div className={'dot'} onMouseDown={(e) => {
+                        handleMouseDown(e)
+                    }}
+                    onTouchStart={(e) => {
                         handleMouseDown(e)
                     }}>
                     </div>
@@ -73,7 +91,6 @@ const getDegFromMouse = (x, y) => {
 };
 
 const moveDot = (cont, deg) => {
-    console.log(deg);
     cont.style.transform = `rotate(${deg}deg)`;
 };
 

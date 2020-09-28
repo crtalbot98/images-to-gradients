@@ -1,10 +1,14 @@
-.btn(@clr, @bdr){
+.btn(@clr, @bdr, @w, @h){
   background-color: @clr;
   border: 2px solid @bdr;
-  height: 3em;
-  width: 6em;
-  border-radius: 1em;
-  color: #ffffff;
+  height: @h;
+  width: @w;
+  color: @primary-white;
+  cursor: pointer;
+}
+
+.btn:hover{
+  border-color: @primary-white;
 }
 
 .bottom-center(@r){
@@ -18,4 +22,18 @@
   justify-content: @jc;
   align-content: @ac;
   flex-wrap: wrap;
+}
+
+.flex-center(@jc){
+  display: flex;
+  justify-content: @jc;
+  align-items: center;
+}
+
+.triangle(@w1, @w2, @c){
+  width: 0;
+  height: 0;
+  border-left: @w1 solid transparent;
+  border-right: @w1 solid transparent;
+  border-top: @w2 solid @c;
 }

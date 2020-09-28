@@ -3,17 +3,21 @@
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-}
 
-.flex-center{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @media screen and (max-width: 450px){
+    flex-direction: column;
+    justify-content: space-between;
+    height: 10em;
+  }
 }
 
 .flex-row-center{
   display: flex;
   align-items: center;
+
+  @media screen and (max-width: 450px){
+    align-items: flex-start;
+  }
 }
 
 .flex-row-center div{
@@ -27,6 +31,10 @@
   justify-content: space-between;
   align-items: center;
   align-content: center;
+
+  @media screen and (max-width: 900px){
+    display: block;
+  }
 }
 
 .flex-column-wrap{
@@ -44,9 +52,9 @@
 }
 
 .flex{
-  display: flex;
+  display: block;
 }
 
-.eighty-width{
-  width: 80%;
+.flex-cont{
+  display: flex;
 }

@@ -6,10 +6,8 @@ import ImageHandler from "../usplash-images/ImageHandler";
 function UploadBtns(){
 
     const imgState = React.useContext(ImageContext);
-    const [load, setLoadings] = React.useState({
-        loading: false,
-        loaded: false
-    });
+    const [load, setLoad] = React.useState(false);
+    const [loading, setLoading] = React.useState(false);
 
     const getImageFile = (e) => {
         const file = e.target.files[0];
@@ -43,15 +41,25 @@ function UploadBtns(){
         reader.readAsDataURL(file);
     };
 
-    const handleClick = () => {
-        setLoadings({loading: true, loaded: true});
+    const handleLoad = () => {
+        setLoad(true);
+    };
+
+    const handleLoading = (e) => {
+        setLoading(e);
     };
 
     return (
         <React.Fragment>
-            <button className={load.loaded ? 'hidden' : 'flex'} onClick={handleClick}>Load Images</button>
-            <input type={'file'} accept={'image/*'} onChange={getImageFile}/>
-            <ImageHandler load={load}/>
+            <button className={load ? 'hidden' : 'flex upload-btn border-radius'} onClick={() => {
+                handleLoad();
+                handleLoading(true)
+            }}>Load Images</button>
+            <div className={load ? 'file-wrap margin-top' : 'file-wrap'}>
+                <label className={'file border-radius'} htmlFor={'file'}>Upload Image</label>
+                <input id={'file'} type={'file'} accept={'image/*'} onChange={getImageFile}/>
+            </div>
+            <ImageHandler load={load} loading={loading} handleLoad={handleLoading}/>
         </React.Fragment>
     )
 }

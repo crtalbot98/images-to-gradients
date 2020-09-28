@@ -1,11 +1,25 @@
+.btn:hover {
+  border-color: #e2e2e2;
+}
 body,
 html {
   margin: 0;
   height: auto;
+  font-family: 'lato', Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 canvas {
   margin: 0;
-  background: #ffffff;
+  background: #e2e2e2;
+}
+@media screen and (max-width: 900px) {
+  canvas {
+    align-self: center;
+  }
+}
+@media screen and (max-width: 450px) {
+  canvas {
+    display: none;
+  }
 }
 .flex-row {
   display: flex;
@@ -13,14 +27,21 @@ canvas {
   justify-content: space-around;
   align-items: center;
 }
-.flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@media screen and (max-width: 450px) {
+  .flex-row {
+    flex-direction: column;
+    justify-content: space-between;
+    height: 10em;
+  }
 }
 .flex-row-center {
   display: flex;
   align-items: center;
+}
+@media screen and (max-width: 450px) {
+  .flex-row-center {
+    align-items: flex-start;
+  }
 }
 .flex-row-center div {
   margin: 0 1em;
@@ -32,6 +53,11 @@ canvas {
   justify-content: space-between;
   align-items: center;
   align-content: center;
+}
+@media screen and (max-width: 900px) {
+  .flex-row-wrap {
+    display: block;
+  }
 }
 .flex-column-wrap {
   display: flex;
@@ -45,18 +71,18 @@ canvas {
   display: none;
 }
 .flex {
-  display: flex;
+  display: block;
 }
-.eighty-width {
-  width: 80%;
+.flex-cont {
+  display: flex;
 }
 .gradient-btn {
   background-color: #24252E;
-  border: 2px solid #ffffff;
-  height: 3em;
+  border: 2px solid #7c7b8a;
+  height: 2em;
   width: 6em;
-  border-radius: 1em;
-  color: #ffffff;
+  color: #e2e2e2;
+  cursor: pointer;
 }
 .gradient-btn:first-child {
   border-bottom-left-radius: 1em;
@@ -75,19 +101,25 @@ canvas {
   width: 12em;
   height: 2em;
   padding: 1em;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  color: #ffffff;
+  color: #e2e2e2;
   left: 50%;
   margin-left: -6em;
+}
+@media screen and (max-width: 450px) {
+  .fixed-btn {
+    padding: 0;
+  }
 }
 .fixed-btn button {
   background-color: #554B71;
   border: 2px solid transparent;
-  height: 3em;
-  width: 6em;
+  height: 2em;
+  width: 8em;
+  color: #e2e2e2;
+  cursor: pointer;
   border-radius: 1em;
-  color: #ffffff;
 }
 .fixed-btn button:hover {
   border: 2px solid #554B71;
@@ -97,14 +129,73 @@ canvas {
   padding: 0.25em;
   color: #ffffff;
 }
+.upload-btn {
+  background-color: #24252E;
+  border: 2px solid #7c7b8a;
+  height: 2em;
+  width: 9em;
+  color: #e2e2e2;
+  cursor: pointer;
+  margin-top: 1em;
+  margin-bottom: 2em;
+}
+@media screen and (max-width: 450px) {
+  .upload-btn {
+    margin-left: 1em;
+  }
+}
+.file {
+  background-color: #24252E;
+  border: 2px solid #7c7b8a;
+  height: 2em;
+  width: 6em;
+  color: #e2e2e2;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 0.5em 1.5em;
+}
+input[type="file"] {
+  position: absolute;
+  z-index: -1;
+  top: 6px;
+  left: 0;
+  font-size: 15px;
+  color: #999999;
+}
+@media screen and (max-width: 450px) {
+  input[type="file"] {
+    display: none;
+  }
+}
+.file-wrap {
+  position: relative;
+}
+@media screen and (max-width: 450px) {
+  .file-wrap {
+    float: right;
+    margin-top: -3em;
+    margin-right: 1em;
+  }
+}
+input[type="select"] {
+  background-color: #060b19;
+}
 .circle {
   height: 4.5em;
   width: 4.5em;
   border-radius: 4.5em;
   background-color: #24252E;
-  border: 2px solid white;
+  border: 2px solid #7c7b8a;
   padding: 1em;
   box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.deg-picker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .circle .stick {
   height: 5.25em;
@@ -115,7 +206,7 @@ canvas {
 .stick .dot {
   width: 15px;
   height: 15px;
-  background-color: #ff8b00;
+  background-color: #e2e2e2;
   position: absolute;
   border-radius: 15px;
   margin: 0;
@@ -123,13 +214,14 @@ canvas {
 .deg-input {
   background-color: #24252E;
   border: none;
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid #7c7b8a;
   height: 2em;
   width: 2em;
   position: absolute;
+  color: #e2e2e2;
 }
 .gradient {
-  background-image: linear-gradient(-45deg, #060b19, #2900e6);
+  background-image: linear-gradient(-45deg, #080f22, rgba(13, 0, 41, 0.98));
   height: 100vh;
   display: flex;
   flex-direction: row;
@@ -138,15 +230,59 @@ canvas {
   flex-wrap: wrap;
 }
 .gradient-list {
-  height: 30em;
-  width: 55em;
+  height: 40em;
+  width: 65em;
   overflow-y: scroll;
-  background-image: linear-gradient(-90deg, #373946, #24252E);
+  background-image: linear-gradient(-90deg, #1f222e, #131528);
   box-sizing: border-box;
-  padding: 1em 1em 1em 2em;
+  padding: 1em 2em 1em 2em;
+}
+@media screen and (max-width: 1800px) {
+  .gradient-list {
+    width: 55em;
+    height: 35em;
+  }
+}
+@media screen and (max-width: 1300px) {
+  .gradient-list {
+    width: 55em;
+    height: 30em;
+  }
+}
+@media screen and (max-width: 900px) {
+  .gradient-list {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 450px) {
+  .gradient-list {
+    height: 25em;
+  }
+}
+.gradient-code {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1em;
+  border-bottom: 1px solid #222546;
+}
+@media screen and (max-width: 1800px) {
+  .gradient-code {
+    justify-content: normal;
+  }
+}
+.gradient-list::-webkit-scrollbar {
+  width: 10px;
+  background-color: #5b5c5d;
+}
+.gradient-list::-webkit-scrollbar-thumb {
+  background-color: #393a42;
+}
+.gradient-list::-webkit-scrollbar-thumb:hover {
+  background-color: #1e1f23;
 }
 .gradient p {
-  color: #ffffff;
+  color: #e2e2e2;
 }
 .box-shadow {
   -webkit-box-shadow: 0 0 12px 5px rgba(209, 209, 209, 0.25);
@@ -157,10 +293,143 @@ canvas {
   position: absolute;
   width: 100%;
   left: 0;
-  padding: 6em 4em;
+  padding: 0 3em 4em 3em;
   box-sizing: border-box;
   margin-top: 20em;
   min-height: 80em;
   max-height: 130em;
+}
+@media screen and (max-width: 1700px) {
+  .image-list {
+    max-height: 200em;
+    margin-top: 10em;
+    padding: 0 1em 2em 1em;
+  }
+}
+@media screen and (max-width: 1300px) {
+  .image-list {
+    max-height: 200em;
+    margin-top: 10em;
+    padding: 0 1em 2em 1em;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .image-list {
+    max-height: 250em;
+    padding: 0 0.5em 2em 0.5em;
+  }
+}
+@media screen and (max-width: 450px) {
+  .image-list {
+    max-height: 500em;
+    padding: 0;
+    overflow: hidden;
+  }
+}
+.raised-row {
+  padding-bottom: 2em;
+}
+@media screen and (max-width: 1300px) {
+  .raised-row {
+    padding-bottom: 0.5em;
+    padding-top: 3em;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .raised-row {
+    padding-bottom: 0.5em;
+    padding-top: 1em;
+  }
+}
+@media screen and (max-width: 450px) {
+  .raised-row {
+    padding-top: 0;
+  }
+}
+.eighty-width {
+  width: 80%;
+}
+@media screen and (max-width: 1800px) {
+  .eighty-width {
+    width: 95%;
+  }
+}
+@media screen and (max-width: 1300px) {
+  .eighty-width {
+    justify-content: center;
+  }
+}
+@media screen and (max-width: 900px) {
+  .eighty-width {
+    width: 100%;
+  }
+}
+.pos-abs {
+  position: absolute;
+}
+.border-radius {
+  border-radius: 1em;
+}
+.margin-top {
+  margin-top: 1em;
+}
+.select-cont {
+  width: 11em;
+  background-color: #24252E;
+  height: 2em;
+  padding-left: 0.5em;
+  box-sizing: border-box;
+  color: #e2e2e2;
+  border: 2px solid #7c7b8a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.select-cont #colorAmt {
+  float: right;
+  height: 2em;
+  width: 4em;
+  background-color: #24252E;
+  border: none;
+  color: #e2e2e2;
+}
+.code-property {
+  color: #b778b1;
+}
+.code-property-val {
+  color: #847f9e;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+@media screen and (max-width: 1800px) {
+  code {
+    margin-left: 1em;
+  }
+}
+@media screen and (max-width: 450px) {
+  code {
+    font-size: 12px;
+  }
+}
+.tri-large {
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 25px solid #e2e2e2;
+  animation-name: arrow-anim;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: both;
+}
+@keyframes arrow-anim {
+  from {
+    border-top-color: #e2e2e2;
+  }
+  to {
+    border-top-color: #d2d2d2;
+  }
 }
 /*# sourceMappingURL=style.css.map */

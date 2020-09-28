@@ -1,5 +1,5 @@
 .gradient-btn{
-  .btn(@sec-black; @primary-white);
+  .btn(@sec-black; @sec-white; 6em; 2em);
 }
 
 .gradient-btn:first-child{
@@ -22,14 +22,19 @@
   width: 12em;
   height: 2em;
   padding: 1em;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  color: #ffffff;
+  color: @primary-white;
   .bottom-center(-6em);
+
+  @media screen and (max-width: 450px){
+    padding: 0;
+  }
 }
 
 .fixed-btn button{
-  .btn(@sec-lavender; @tp);
+  .btn(@sec-lavender; @tp; 8em; 2em);
+  border-radius: 1em;
 }
 
 .fixed-btn button:hover{
@@ -39,5 +44,15 @@
 
 .fixed-btn p{
   padding: 0.25em;
-  color: #ffffff
+  color: #ffffff;
+}
+
+.upload-btn{
+  .btn(@sec-black; @sec-white; 9em; 2em);
+  margin-top: 1em;
+  margin-bottom: 2em;
+
+  @media screen and (max-width: 450px){
+    margin-left: 1em;
+  }
 }

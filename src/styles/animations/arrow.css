@@ -1,0 +1,11 @@
+.arrow-left {
+  height: 4em;
+  width: 10px;
+  transform: rotate(-45deg);
+}
+.arrow-right {
+  height: 4em;
+  width: 10px;
+  transform: rotate(45deg);
+}
+/*# sourceMappingURL=arrow.css.map */

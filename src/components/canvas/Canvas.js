@@ -62,18 +62,23 @@ let Canvas = React.memo(function(prop){
             />
             <div>
                 <div className={'flex-row raised-row'}>
-                    <div>
+                    <div className={'btn-row'}>
                         <button className={gradType === 'linear' ? 'gradient-btn selected' : 'gradient-btn'} onClick={(e) => {handleType(e)}}>Linear</button>
                         <button className={gradType === 'radial' ? 'gradient-btn selected' : 'gradient-btn'} onClick={(e) => {handleType(e)}}>Radial</button>
                     </div>
                     <DegreePicker updateDeg={updateDeg}/>
-                    <select name="colorAmt" id="colorAmt" defaultValue={gradAmt} onChange={(e) => {
-                        setAmt(Number(e.target.value));
-                    }}>
-                        <option value={2}>2</option>
-                        <option value={3}>3</option>
-                        <option value={4}>4</option>
-                    </select>
+                    <div className={'select-cont'}>
+                        <div className={'select-label'}>
+                            Color Amount
+                        </div>
+                        <select name="colorAmt" id="colorAmt" defaultValue={gradAmt} onChange={(e) => {
+                            setAmt(Number(e.target.value));
+                        }}>
+                            <option value={2}>2</option>
+                            <option value={3}>3</option>
+                            <option value={4}>4</option>
+                        </select>
+                    </div>
                 </div>
                 <GradientList data={gData} type={gradType} gradAmt={gradAmt} deg={gradDeg}/>
                 <UploadBtns/>

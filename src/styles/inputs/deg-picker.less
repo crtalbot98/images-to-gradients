@@ -3,9 +3,14 @@
   width: 4.5em;
   border-radius: 4.5em;
   background-color: #24252E;
-  border: 2px solid white;
+  border: 2px solid @sec-white;
   padding: 1em;
   box-sizing: border-box;
+  .flex-center(center);
+}
+
+.deg-picker{
+  .flex-center(center);
 }
 
 .circle .stick{
@@ -18,7 +23,7 @@
 .stick .dot{
   width: 15px;
   height: 15px;
-  background-color: #ff8b00;
+  background-color: @primary-white;
   position: absolute;
   border-radius: 15px;
   margin: 0;
@@ -27,8 +32,9 @@
 .deg-input{
   background-color: #24252E;
   border: none;
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid @sec-white;
   height: 2em;
   width: 2em;
   position: absolute;
+  color: @primary-white
 }
