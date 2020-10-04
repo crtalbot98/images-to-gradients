@@ -71,7 +71,7 @@ function DegreePicker(props){
                     </div>
                 </div>
             </div>
-            <input type="text" className={'deg-input'} maxLength={3} value={dPos.current.inputDeg} onChange={(e) => {
+            <input type="number" className={'deg-input'} maxLength={3} min={0} max={360} value={dPos.current.inputDeg} onChange={(e) => {
                 updateDeg(e);
             }}/>
         </div>
