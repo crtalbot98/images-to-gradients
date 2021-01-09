@@ -13,3 +13,4 @@ This can be changed with the degree picker. Simply input an a degree (0 - 360) o
 ## Gradient Colors Amount
 The amount of colors in each gradient can be changed by the numerical select. The default value is set to 2.
 
+Link to the hosted project: https://images-to-gradients.netlify.app
