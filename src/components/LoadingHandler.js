@@ -1,9 +1,12 @@
 import React from "react";
+import Loader from "./Loader";
 
 function LoadingHandler(Component){
     return function(props){
-        if(!props.isLoading) return <Component {...props}/>;
-        return <p>Give us a second...</p>
+        if(!props.isLoading){
+            return <Component {...props}/>
+        }
+        return <Loader/>
     }
 }
 
