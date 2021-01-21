@@ -1,7 +1,7 @@
 .file{
-  .btn(@sec-black; @sec-white; 6em; 2em);
+  .btn(@tp; @sec-white; auto; 2em);
   font-size: 13px;
-  padding: 0.5em 1.5em;
+  padding: 0.45em;
 }
 
 input[type="file"] {
@@ -11,6 +11,7 @@ input[type="file"] {
   left: 0;
   font-size: 15px;
   color: rgb(153,153,153);
+  width: 0;
 
   @media screen and (max-width: 450px){
     display: none;
@@ -28,6 +29,6 @@ input[type="file"] {
 }
 
 input[type="select"]{
-  background-color: @primary-black;
+  background-color: @primary-white;
 }
 

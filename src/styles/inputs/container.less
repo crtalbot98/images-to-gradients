@@ -46,7 +46,7 @@
 
 .select-cont{
   width: 11em;
-  background-color: @sec-black;
+  background-color: @tp;
   height: 2em;
   padding-left: 0.5em;
   box-sizing: border-box;
@@ -55,13 +55,21 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-radius: 1em;
 
   #colorAmt {
     float: right;
     height: 2em;
     width: 4em;
-    background-color: @sec-black;
+    background-color: @tp;
     border: none;
     color: @primary-white;
+    border-top-right-radius: 1em;
+    border-bottom-right-radius: 1em;
+  }
+
+  option{
+    background-color: @primary-purple;
+    border-color: @sec-purple;
   }
 }
