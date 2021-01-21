@@ -8,8 +8,8 @@ import DegreePicker from "./DegreePicker";
 let Canvas = React.memo(function(prop){
 
     let canvas = React.useRef(null);
-    const imgState = React.useContext(ImageContext);
-    const [prevImg, setPrevImg] = React.useState(imgState.image);
+    const state = React.useContext(ImageContext);
+    const [prevImg, setPrevImg] = React.useState(state.image);
     const[gData, setGData] = React.useState(false);
     const [gradType, setType] = React.useState('linear');
     const [gradAmt, setAmt] = React.useState(2);
@@ -20,12 +20,12 @@ let Canvas = React.memo(function(prop){
     };
 
     const updateCanvas = async (ctx) => {
-        const newSizes = await changeSize(imgState.image.height, imgState.image.width);
+        const newSizes = await changeSize(state.image.height, state.image.width);
         canvas.current.width = newSizes.w;
         canvas.current.height = newSizes.h;
         await clearImage(prevImg, ctx);
-        await ctx.drawImage(imgState.image, 0, 0, newSizes.w, newSizes.h);
-        await getImageData(ctx, {width: imgState.image.width, height: imgState.image.height});
+        await ctx.drawImage(state.image, 0, 0, newSizes.w, newSizes.h);
+        await getImageData(ctx, {width: state.image.width, height: state.image.height});
     };
 
     const handleType = (e) => {
@@ -49,15 +49,15 @@ let Canvas = React.memo(function(prop){
     };
 
     React.useEffect(() => {
-        if(imgState.image === null) return;
-        setPrevImg(imgState.image);
+        if(state.image === null) return;
+        setPrevImg(state.image);
         updateCanvas(canvas.current.getContext('2d'));
-    }, [imgState.image]);
+    }, [state.image]);
 
     return(
         <React.Fragment>
             <canvas id={'image-canvas'} className={'box-shadow'} ref={canvas} height={'400px'} width={'350px'}
-                    data-img={imgState.image !== null ? imgState.image.src : 'empty'}
+                    data-img={state.image !== null ? state.image.src : 'empty'}
                     data-testid={'canvas-image'}
             />
             <div>
