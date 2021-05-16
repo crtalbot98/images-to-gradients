@@ -13,24 +13,29 @@ export const changeSize = (h, w) => {
         w: w
     };
 
+    if(h >= 10000 || w >= 8000){
+        newSizes['h'] = h * 0.03;
+        newSizes['w'] = w * 0.03;
+        return newSizes;
+    }
     if(h >= 5000 || w >= 5000){
         newSizes['h'] = h * 0.05;
         newSizes['w'] = w * 0.05;
         return newSizes;
     }
     else if(h >= 2000 || w >= 2000){
-        newSizes['h'] = h * 0.1;
-        newSizes['w'] = w * 0.1;
+        newSizes['h'] = h * 0.15;
+        newSizes['w'] = w * 0.15;
         return newSizes;
     }
     else if(h >= 1000 || w >= 1000){
-        newSizes['h'] = h * 0.25;
-        newSizes['w'] = w * 0.25;
+        newSizes['h'] = h * 0.3;
+        newSizes['w'] = w * 0.3;
         return newSizes;
     }
     else if(h >= 800|| w >= 800){
-        newSizes['h'] = h * 0.50;
-        newSizes['w'] = w * 0.50;
+        newSizes['h'] = h * 0.60;
+        newSizes['w'] = w * 0.60;
         return newSizes;
     }
     else if(h >= 400 || w >= 400){

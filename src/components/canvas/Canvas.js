@@ -33,7 +33,7 @@ let Canvas = React.memo(function(prop){
     };
 
     const getImageData = (ctx, size) => {
-        let data = [];
+        let data = new Set();
         let j = 0;
         const max = Math.max(size.width, size.height);
         const min = Math.min(size.width, size.height);
@@ -41,11 +41,10 @@ let Canvas = React.memo(function(prop){
         for(let i = 0; i <= max; i += 15){
             if(j >= min) break;
             if(i <= min) j += 15;
-            data.push(ctx.getImageData(i, j,1,1).data.toString());
+            data.add(ctx.getImageData(i, j,1,1).data.toString());
         }
 
-        const uniqData = [...new Set(data)];
-        setGData(uniqData);
+        setGData(data);
     };
 
     React.useEffect(() => {

@@ -25,12 +25,13 @@ const compareType = (type, deg) => {
     return type === 'linear' ? `${deg}deg,` : ''
 };
 
-const genGradients = (arr, n) => {
+const genGradients = (set, n) => {
     let i = 0;
     let j = 1;
     let gradData = [];
+    const arr = Array.from(set);
 
-    while(i < arr.length - n){
+    while(i < arr.length - 1){
         if(j === i + 1) gradData.push(`rgba(${arr[i]})`);
         if(j !== i + n){
             gradData[i] = gradData[i].concat(`, rgba(${arr[j]})`);
